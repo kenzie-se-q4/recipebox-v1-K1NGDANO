@@ -1,12 +1,7 @@
-{{ post }}
-
-<h2>{{ Aloha }}</h2>
-
 <h1>Aloha Recipe Book</h1>
 
 <ul>
-    {% for foo in post %}
-    <li><a href="/recipes/{{ foo.id }}/"{{ foo.title }}</a> -- by <a href="/author/{{
-foo.author.id }}/"{{ foo.author.name }}</a></li>
+    {% for foo in recipes %}
+    <li><a href="/recipes/{{ foo.id }}/">{{ foo.title }}</a></li>
     {% endfor %}
 </ul>

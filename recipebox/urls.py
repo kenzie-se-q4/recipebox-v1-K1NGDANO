@@ -19,7 +19,7 @@ from recipe_app import views
 
 urlpatterns = [
     path('', views.index),
-    path('author/<int:author_id>/', views.author),
-    path('recipes/', views.recipes),
+    path('author/<int:author_id>/', views.author_detail),
+    path('recipes/<int:recipe_id>/', views.recipes_detail),
     path('admin/', admin.site.urls),
 ]
