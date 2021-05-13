@@ -24,4 +24,6 @@ urlpatterns = [
     path('recipes/add/', views.add_recipes),
     path('author/add/', views.add_author),
     path('admin/', admin.site.urls),
+    path('login/', views.login_views, name='login_views'),
+    path('logout/', views.logout_views, name='logout_views')
 ]

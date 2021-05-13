@@ -22,10 +22,13 @@ class AddRecipesForm(forms.Form):
     instructions = forms.CharField(widget=forms.Textarea)
 
 
-class AddAuthorForm(forms.ModelForm):
-    class Meta:
-        model = Author
-        fields = [
-            'name',
-            "bio"
-            ]
+class AddAuthorForm(forms.Form):
+    name = forms.CharField(max_length=40)
+    bio = forms.CharField(max_length=100)
+    username = forms.CharField(max_length=150)
+    password = forms.CharField(widget=forms.PasswordInput)
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=40)
+    password = forms.CharField(widget=forms.PasswordInput)
