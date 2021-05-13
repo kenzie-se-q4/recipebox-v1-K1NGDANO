@@ -1,0 +1,16 @@
+<h1>Aloha Recipe Book</h1>
+<h2>Recipes Made with Aloha</h2>
+<a href="/login/">Login</a>
+<br>
+<a href="/logout/">Logout</a>
+<br>
+<br>
+<a href="/recipes/add">Add The Goodness</a>
+<br>
+<a href="/author/add">Who is it?</a>
+
+<ul>
+    {% for foo in recipes %}
+    <li><a href="/recipes/{{ foo.id }}/">{{ foo.title }}</a></li>
+    {% endfor %}
+</ul>
