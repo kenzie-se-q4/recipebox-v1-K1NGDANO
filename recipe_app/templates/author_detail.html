@@ -1,8 +1,37 @@
-<p>{{ author }}</p>
-
-<p>{{ author.bio }}</p>
-<ul>
-    {% for recipe in recipes %}
-    <li><a href="/recipes/{{ recipe.author.id }}">{{ recipe.title }}</a></li>
+<!-- prints error messages -->
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
     {% endfor %}
 </ul>
+{% endif %}
+
+<br>
+
+<h2>Author:</h2>
+<p>{{ author }}</p>
+
+<h3>Author Bio:</h3>
+<p>{{ author.bio }}</p>
+
+<br>
+
+<h3>Favorite Recipes:</h3>
+<ul>
+    {% for foo in favorites %}
+    <li>
+        <a href='/recipes/{{foo.id}}'>{{foo.title}}</a>
+    </li>
+    {% endfor %}
+</ul>
+<h3>Authored Recipes:</h3>
+<ul>
+    {% for recipe in recipes %}
+    <li><a href="/recipes/{{ recipe.id }}">{{ recipe.title }}</a></li>
+    {% endfor %}
+</ul>
+<br>
+<a href='/'>Home</a>

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 """
@@ -15,15 +16,24 @@ Recipe:
 - Instructions(TextField)
 """
 
-class Author(models.Model):
-    name = models.CharField(max_length=50)
+# had to edit the Author model since there was no login
+# forms or any kind of thing like that
+
+
+class Author(AbstractUser):
     bio = models.TextField()
+    favorites = models.ManyToManyField('Recipes', symmetrical=False,
+                                       related_name='author_favorites',
+                                       blank=True)
 
     def __str__(self):
-        return self.name
+        return self.username
+
 
 class Recipes(models.Model):
     title = models.CharField(max_length=50)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     time_required = models.CharField(max_length=45)
-    intructions = models.TextField()
+    instructions = models.TextField()
+    favorites = models.ManyToManyField(Author, related_name='favorite_by',
+                                       blank=True)

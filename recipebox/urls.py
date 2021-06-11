@@ -18,8 +18,15 @@ from django.urls import path
 from recipe_app import views
 
 urlpatterns = [
-    path('', views.index),
+    path('', views.index, name='home'),
+    path('login/', views.LoginUser.as_view(), name='login'),
+    path('logout/', views.logout_user, name='logout'),
+    path('recipes/add/', views.AddRecipe.as_view()),
+    path('author/add/', views.AddAuthor.as_view()),
     path('author/<int:author_id>/', views.author_detail),
     path('recipes/<int:recipe_id>/', views.recipes_detail),
+    path('recipes/<int:recipe_id>/edit/', views.EditRecipe.as_view()),
+    path('recipes/<int:recipe_id>/favorite/', views.favorite),
+    path('recipes/<int:recipe_id>/remove_fav/', views.favorite),
     path('admin/', admin.site.urls),
 ]

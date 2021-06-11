@@ -1,7 +1,66 @@
-<h1>Aloha Recipe Book</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-<ul>
-    {% for foo in recipes %}
-    <li><a href="/recipes/{{ foo.id }}/">{{ foo.title }}</a></li>
-    {% endfor %}
-</ul>
+<head>
+    <h1>Aloha Recipe Book</h1>
+
+    <hr>
+
+    <!-- prints error messages -->
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <section id="main-content">
+
+        <h3>Authors:</h3>
+
+        </br>
+
+        {% for foo in authors %}
+
+        <a href="/author/{{ foo.id }}">{{ foo.username }}</a>
+
+        {% endfor %}
+
+        <hr>
+        </br>
+
+        <a href='/author/add'>Add User/Author</a>
+
+        <br>
+        {% if not request.user.is_authenticated %}
+
+        <a href='/login/'>Login</a>
+
+        <br>
+
+        <h1>Home Page</h1>
+
+        {% endif %}
+
+        {% if request.user.is_authenticated %}
+        <a href='/recipes/add'>Add a recipe</a>
+
+        </br>
+        <a href='/logout/'>Logout</a>
+
+        </br>
+        {% endif %}
+    </section>
+
+    <ul>
+        {% for foo in recipes %}
+        <li>
+            <a href="/recipes/{{ foo.id }}/">{{ foo.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <br>
+    <a href='/'>Home</a>

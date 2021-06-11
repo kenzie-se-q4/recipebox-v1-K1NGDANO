@@ -1,7 +1,43 @@
-<h2>These are the recipes.</h2>
+<!-- prints error messages -->
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+    {% endfor %}
+</ul>
+{% endif %}
 
-    by <a href="/author/{{ recipes.author.id }}/">{{ recipes.author.name }}</a></h3>
-    <h2>{{ recipes.title }}</h2>
-    <h2>{{ recipes.description }}</h2>
-    <h2>{{ recipes.time_required}}</h2>
-    <h2>{{ recipes.instructions }}</h2>
+<br>
+
+<h2>Recipe: {{recipes.title}}</h2>
+
+by <a href="/author/{{ recipes.author.id }}/">{{ recipes.author.username }}</a></h3>
+<h2>Time Required:</h2>
+<p>{{ recipes.time_required}}</p>
+<h2>Instructions:</h2>
+<p>{{ recipes.instructions }}</p>
+<br>
+{% if request.user.username == recipes.author.username %}
+<a href='edit/'>Edit Recipe</a>
+{% endif %}
+{% if request.user.is_admin %}
+<a href='edit/'>Edit Recipe</a>
+{% endif %}
+
+<br>
+<br>
+{% if request.user.is_authenticated %}
+{% if not has_fav %}
+<a href='favorite/?data=fav'><button type='submit' method='POST'>Favorite</button></a>
+<br>
+<br>
+{% endif %}
+{% if has_fav %}
+<a href='remove_fav/?data=remove_fav'><button type='submit' method='POST'>Remove Favorite</button></a>
+{% endif %}
+{% endif %}
+<br>
+<br>
+<a href='/'>Home</a>
