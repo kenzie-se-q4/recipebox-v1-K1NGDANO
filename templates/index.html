@@ -1,13 +1,14 @@
-<h1>Aloha Recipe Book</h1>
-<h2>Recipes Made with Aloha</h2>
-<a href="/login/">Login</a>
-<br>
-<a href="/logout/">Logout</a>
-<br>
-<br>
-<a href="/recipes/add">Add The Goodness</a>
-<br>
-<a href="/author/add">Who is it?</a>
+<h4>Home</h4>
+{% if request.user.is_authenticated %}
+<h1>Hello, {{ request.user.username }}</h1>
+<button onclick="window.location.href='/logout/'">Logout</button>
+{% else %}
+<h2>👽 Welcome, please <a href="/login/">login</a></h2>
+{% endif %}
+<h5><a href="/addauthor/">Create Author</a></h5>
+<h5><a href="/addrecipe/">Create Recipe</a></h5>
+<hr>
+
 
 <ul>
     {% for foo in recipes %}

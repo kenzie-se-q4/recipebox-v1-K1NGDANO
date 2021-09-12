@@ -39,7 +39,7 @@ def add_recipes(request):
     form =AddRecipesForm()
     return render(request, 'generic_form.html', {'form': form})
 
-@staff_member_required
+# @staff_member_required
 def add_author(request):
     if request.method == 'POST':
         form = AddAuthorForm(request.POST)
